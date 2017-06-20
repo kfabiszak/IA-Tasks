@@ -1,0 +1,602 @@
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (223.1ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (361.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170617173257)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "login" varchar, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170617173257"]]
+  [1m[35m (238.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-06-17 17:33:41.153403"], ["updated_at", "2017-06-17 17:33:41.153403"]]
+  [1m[35m (228.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("login", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["login", "zenek"], ["name", "Zenon Zawada"], ["created_at", "2017-06-17 17:34:08.225324"], ["updated_at", "2017-06-17 17:34:08.225324"]]
+  [1m[35m (207.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("login", "name", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["login", "karolek"], ["name", "Karol Koszmarny"], ["created_at", "2017-06-17 17:34:13.133031"], ["updated_at", "2017-06-17 17:34:13.133031"]]
+  [1m[35m (232.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" LIMIT ?[0m  [["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2017-06-17 19:42:15 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (66.1ms)
+Started GET "/" for 127.0.0.1 at 2017-06-17 19:42:16 +0200
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 3627ms (Views: 3613.1ms | ActiveRecord: 2.5ms)
+
+
+Completed 200 OK in 3052ms (Views: 3050.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-06-17 19:42:23 +0200
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (99.7ms) [cache miss]
+  Rendered users/new.html.erb within layouts/application (102.8ms)
+Completed 200 OK in 133ms (Views: 129.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-17 19:42:37 +0200
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"FUEI+Gb7uw+9lNesBOo9iTUKvMo5YEtNSR3YWFOobQcNZO+Nvogkvc8C0D6MkRkESae5RujwB5CfFobsS92hcA==", "user"=>{"login"=>"Kram", "name"=>"Bartosz Kram"}, "commit"=>"Create User"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[31mrollback transaction[0m
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (4.1ms) [cache miss]
+  Rendered users/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 38ms (Views: 31.4ms | ActiveRecord: 0.6ms)
+
+
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateArticles (20170617174308)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE TABLE "articles" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "user_id" integer, "published" boolean DEFAULT 't', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170617174308"]]
+  [1m[35m (2136.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."login" = ? LIMIT ?[0m  [["login", "zenek"], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."login" = ? LIMIT ?[0m  [["login", "zenek"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "Chwytliwy"], ["body", "Lorem ipsum"], ["user_id", 1], ["created_at", "2017-06-17 17:55:32.502699"], ["updated_at", "2017-06-17 17:55:32.502699"]]
+  [1m[35m (180.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."user_id" = ? LIMIT ?[0m  [["user_id", 1], ["LIMIT", 11]]
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:01:59 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (33.9ms)
+Completed 200 OK in 262ms (Views: 246.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-06-17 20:02:03 +0200
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 30ms (Views: 28.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:11:47 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (29.8ms)
+Completed 200 OK in 60ms (Views: 54.8ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:15:42 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 70ms (Views: 66.2ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:34:02 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 31ms (Views: 29.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:34:05 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (62.5ms)
+Completed 200 OK in 97ms (Views: 93.7ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:34:35 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/ElExELzyto7GAxY6lNc+Gf63o6IfYfvR2vpCJjOwCo80fPHQ1xflbNrYMA6ZqNVG3odKij8sGkXHjyX3YaKIA==", "article"=>{"title"=>"Title1", "body"=>"costam", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:37:07 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 43ms (Views: 40.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:37:10 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (8.1ms)
+Completed 200 OK in 48ms (Views: 45.4ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:37:49 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"frWESpjIUD2Llk1BIPMKxATGE76nIifvDXZHOqWZDP++LTNJmWfFcgPlIdnwxvVpeEbQGgejEGldA5Kl4NFG9Q==", "article"=>{"title"=>"Pierwszy", "body"=>"costam", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:39:54 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"frWESpjIUD2Llk1BIPMKxATGE76nIifvDXZHOqWZDP++LTNJmWfFcgPlIdnwxvVpeEbQGgejEGldA5Kl4NFG9Q==", "article"=>{"title"=>"Pierwszy", "body"=>"costam", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:39:57 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 37ms (Views: 34.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:40:01 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (16.4ms)
+Completed 200 OK in 47ms (Views: 43.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:40:13 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0YRIlWcIY1Y2Mogmf8J2BkagBS0m8uVDXd3/10cSBVgRHP+WZqf2Gb5B5L6v94mrOiDGiYZz0sUNqCpIAlpPUg==", "article"=>{"title"=>"Tekst", "body"=>"Tekstinny", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:43:42 +0200
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (35.3ms)
+Completed 200 OK in 263ms (Views: 245.9ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:43:45 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (30.0ms)
+Completed 200 OK in 61ms (Views: 56.5ms | ActiveRecord: 0.6ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:43:52 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1+MigESr2RikUCcSWUFM/15g0JCsiaVljFb/bs3RzWwXe5WDRQRMVywjS4qJdLNSIuATNAwIkuPcIyrxiJmHZg==", "article"=>{"title"=>"Tekst", "body"=>"Testowy", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:46:10 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (56.2ms)
+Completed 200 OK in 81ms (Views: 76.0ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:48:45 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (25.1ms)
+Completed 200 OK in 50ms (Views: 45.8ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:48:48 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 59ms (Views: 55.5ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:48:57 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"49ijsTHvJd+E2zXGUu+6LmCJzOPrR4wurVOYeGSY68cjQBSyMECwkAyoWV6C2kWDHAkPR0vGu6j9Jk3nIdChzQ==", "article"=>{"title"=>"Tytul", "body"=>"Content", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Unpermitted parameter: :user_id
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (10.9ms)
+Completed 200 OK in 58ms (Views: 48.9ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:49:03 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PgSUE1hgXjwC75lgJmclWhp6Izt3nuu46inuic9YeuxT0N0l5mJuLciICBK6rmLyBBoeibvpQeE8uALnhpCOyg==", "article"=>{"title"=>"Tytul", "body"=>"Content", "user_id"=>"2", "published"=>"1"}, "commit"=>"Create Article"}
+Unpermitted parameter: :user_id
+  [1m[35m (1.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 62ms (Views: 53.1ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:49:35 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.6ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (36.3ms)
+Completed 200 OK in 86ms (Views: 80.6ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:49:36 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 39ms (Views: 36.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:49:42 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5VKme5vGyrlgI0Vz1nmaRMcVoN/oHQ0Ln4hUe3f/lpclyhF4mmlf9uhQKesGTGXpu5Vje0icOo3P/YHkMrfcnQ==", "article"=>{"title"=>"tyt", "body"=>"zcsagfa", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Unpermitted parameter: :user_id
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[31mrollback transaction[0m
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 44ms (Views: 37.6ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:50:48 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (35.0ms)
+Completed 200 OK in 67ms (Views: 60.1ms | ActiveRecord: 2.7ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:50:50 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (10.2ms)
+Completed 200 OK in 45ms (Views: 41.3ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:51:10 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zgHFBxEmAfT1AO1SPE0rcgvzNKTkGmIz06NKjof5p8UOmXIEEImUu31zgcrseNTfd3P3AESbVbWD1p8RwrHtzw==", "article"=>{"title"=>"tytul", "body"=>"wadsa", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:52:26 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 57ms (Views: 51.9ms | ActiveRecord: 3.1ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:52:28 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 32ms (Views: 29.2ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:52:32 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"6xhouCpk5WWRS5hoMNMQxy4EVOdEFBVaSkz5MFYFJRIrgN+7K8twKhk49PDg5u9qUoSXQ+SVItwaOSyvE01vGA==", "article"=>{"title"=>"tyt", "body"=>"asasa", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 3, expected 0)):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:53:01 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (35.1ms)
+Completed 200 OK in 58ms (Views: 53.8ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:53:03 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 28ms (Views: 25.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:53:08 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jAe5C/6RWUOXNqHZWe93y2A+VvfLXfDpFiDMXUoJb25Mnw4I/z7MDB9FzUGJ2ohmHL6VU2vcx29GVRnCD0ElZA==", "article"=>{"title"=>"assfsa", "body"=>"asfasdf", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/articles_controller.rb:11:in `create'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:54:08 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.2ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (31.4ms)
+Completed 200 OK in 72ms (Views: 65.4ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:54:10 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 52ms (Views: 49.5ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:54:56 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"nAm9uMyVqpEmx+da5rc3WHCr2OWmvtQppGy86fcVbjlckQq7zTo/3q60i8I2gsj1DCsbQQY/46/0GWl2sl0kMw==", "article"=>{"title"=>"asa", "body"=>"assgfsa", "user_id"=>"1", "published"=>"1"}, "commit"=>"Create Article"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["title", "asa"], ["body", "assgfsa"], ["user_id", 1], ["created_at", "2017-06-17 18:54:56.681645"], ["updated_at", "2017-06-17 18:54:56.681645"]]
+  [1m[35m (576.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 587ms (ActiveRecord: 577.2ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:54:57 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 38ms (Views: 36.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/articles/new" for 127.0.0.1 at 2017-06-17 20:55:14 +0200
+Processing by ArticlesController#new as HTML
+  Rendering articles/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered articles/new.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 43ms (Views: 39.6ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/articles" for 127.0.0.1 at 2017-06-17 20:55:21 +0200
+Processing by ArticlesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1CZHl4WL4H0YPNu4HjP/Nq7oqCu6RpjxtOt7Tj8Xy2QUvvCUhCR1MpBPtyDOBgCb0mhrjxrHr3fknq7Rel+Bbg==", "article"=>{"title"=>"kgsdo", "body"=>"jgdaaa", "user_id"=>"1", "published"=>"0"}, "commit"=>"Create Article"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "articles" ("title", "body", "user_id", "published", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["title", "kgsdo"], ["body", "jgdaaa"], ["user_id", 1], ["published", "f"], ["created_at", "2017-06-17 18:55:21.784262"], ["updated_at", "2017-06-17 18:55:21.784262"]]
+  [1m[35m (623.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/articles
+Completed 302 Found in 636ms (ActiveRecord: 624.7ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:55:22 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.3ms)[0m  [1m[34mSELECT "articles".* FROM "articles"[0m
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 30ms (Views: 27.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:56:16 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 42ms
+
+
+  
+NoMethodError (undefined method `find_all_by_published' for Article (call 'Article.connection' to establish a connection):Class):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:56:43 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 45ms
+
+
+  
+NoMethodError (undefined method `find_all_by_published' for Article (call 'Article.connection' to establish a connection):Class):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:56:47 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 50ms
+
+
+  
+NoMethodError (undefined method `find_all_by_published' for Article (call 'Article.connection' to establish a connection):Class):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:57:02 +0200
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `find_all_by_published' for #<Class:0x007fa754703390>):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 20:58:49 +0200
+Processing by ArticlesController#index as HTML
+  [1m[36mArticle Load (0.5ms)[0m  [1m[34mSELECT  "articles".* FROM "articles" WHERE "articles"."published" = ? LIMIT ?[0m  [["published", "t"], ["LIMIT", 1]]
+  Rendering articles/index.html.erb within layouts/application
+  Rendered articles/index.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 1.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `each' for #<Article:0x007fa75c1cfa60>):
+     6:  <th>Contents</th>
+     7:  <th>Author</th>
+     8:  </tr>
+     9: <% @articles.each do |article| %>
+    10:  <tr>
+    11:  <td><%= article.title %></td>
+    12:  <td><%= article.body %></td>
+  
+app/views/articles/index.html.erb:9:in `_app_views_articles_index_html_erb__1817415767695828982_39801640'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:00:38 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 38ms
+
+
+  
+NoMethodError (undefined method `find_all_by_published' for Article (call 'Article.connection' to establish a connection):Class):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:04:41 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 5ms
+
+
+  
+ArgumentError (Unsupported argument type: true (TrueClass)):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:05:25 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 4ms
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:05:26 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:05:27 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:05:27 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 2ms
+
+
+  
+ArgumentError (Unsupported argument type: 1 (Integer)):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:06:32 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 164ms
+
+
+  
+NameError (undefined local variable or method `published' for #<ArticlesController:0x007fa7546cca98>
+Did you mean?  public_send):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:06:42 +0200
+Processing by ArticlesController#index as HTML
+Completed 500 Internal Server Error in 176ms
+
+
+  
+NameError (undefined local variable or method `published' for #<ArticlesController:0x0000000458e2c0>
+Did you mean?  public_send):
+  
+app/controllers/articles_controller.rb:3:in `index'
+Started GET "/articles" for 127.0.0.1 at 2017-06-17 21:08:52 +0200
+Processing by ArticlesController#index as HTML
+  Rendering articles/index.html.erb within layouts/application
+  [1m[36mArticle Load (0.4ms)[0m  [1m[34mSELECT "articles".* FROM "articles" WHERE "articles"."published" = ?[0m  [["published", "t"]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered articles/index.html.erb within layouts/application (42.7ms)
+Completed 200 OK in 272ms (Views: 261.5ms | ActiveRecord: 2.9ms)
+
+
